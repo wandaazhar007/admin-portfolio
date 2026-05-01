@@ -1,18 +1,45 @@
+import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import AuthLayout from "../layouts/AuthLayout";
 import AdminLayout from "../layouts/AdminLayout";
-import LoginPage from "../pages/auth/LoginPage";
-import DashboardPage from "../pages/dashboard/DashboardPage";
-import WorksPage from "../pages/works/WorksPage";
-import CreateWorkPage from "../pages/works/CreateWorkPage";
-import EditWorkPage from "../pages/works/EditWorkPage";
-import BlogsPage from "../pages/blogs/BlogsPage";
-import CreateBlogPage from "../pages/blogs/CreateBlogPage";
-import EditBlogPage from "../pages/blogs/EditBlogPage";
-import CategoriesPage from "../pages/categories/CategoriesPage";
-import CreateCategoryPage from "../pages/categories/CreateCategoryPage";
-import EditCategoryPage from "../pages/categories/EditCategoryPage";
 import ProtectedRoute from "../components/guards/ProtectedRoute";
+
+const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
+const DashboardPage = lazy(() => import("../pages/dashboard/DashboardPage"));
+
+const WorksPage = lazy(() => import("../pages/works/WorksPage"));
+const CreateWorkPage = lazy(() => import("../pages/works/CreateWorkPage"));
+const EditWorkPage = lazy(() => import("../pages/works/EditWorkPage"));
+
+const BlogsPage = lazy(() => import("../pages/blogs/BlogsPage"));
+const CreateBlogPage = lazy(() => import("../pages/blogs/CreateBlogPage"));
+const EditBlogPage = lazy(() => import("../pages/blogs/EditBlogPage"));
+
+const CategoriesPage = lazy(() => import("../pages/categories/CategoriesPage"));
+const CreateCategoryPage = lazy(() => import("../pages/categories/CreateCategoryPage"));
+const EditCategoryPage = lazy(() => import("../pages/categories/EditCategoryPage"));
+
+function PageLoader() {
+  return (
+    <div
+      style={{
+        minHeight: "30vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "1.6rem",
+        color: "#314755",
+        padding: "2rem",
+      }}
+    >
+      Loading...
+    </div>
+  );
+}
+
+function withSuspense(element: React.ReactNode) {
+  return <Suspense fallback={<PageLoader />}>{element}</Suspense>;
+}
 
 export const router = createBrowserRouter([
   {
@@ -20,9 +47,9 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/login",
-        element: <LoginPage />
-      }
-    ]
+        element: withSuspense(<LoginPage />),
+      },
+    ],
   },
   {
     element: (
@@ -33,48 +60,48 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <DashboardPage />
+        element: withSuspense(<DashboardPage />),
       },
       {
         path: "/dashboard",
-        element: <DashboardPage />
+        element: withSuspense(<DashboardPage />),
       },
       {
         path: "/works",
-        element: <WorksPage />
+        element: withSuspense(<WorksPage />),
       },
       {
         path: "/works/create",
-        element: <CreateWorkPage />
+        element: withSuspense(<CreateWorkPage />),
       },
       {
         path: "/works/:uuid/edit",
-        element: <EditWorkPage />
+        element: withSuspense(<EditWorkPage />),
       },
       {
         path: "/blogs",
-        element: <BlogsPage />
+        element: withSuspense(<BlogsPage />),
       },
       {
         path: "/blogs/create",
-        element: <CreateBlogPage />
+        element: withSuspense(<CreateBlogPage />),
       },
       {
         path: "/blogs/:uuid/edit",
-        element: <EditBlogPage />
+        element: withSuspense(<EditBlogPage />),
       },
       {
         path: "/categories",
-        element: <CategoriesPage />
+        element: withSuspense(<CategoriesPage />),
       },
       {
         path: "/categories/create",
-        element: <CreateCategoryPage />
+        element: withSuspense(<CreateCategoryPage />),
       },
       {
         path: "/categories/:uuid/edit",
-        element: <EditCategoryPage />
-      }
-    ]
-  }
+        element: withSuspense(<EditCategoryPage />),
+      },
+    ],
+  },
 ]);
