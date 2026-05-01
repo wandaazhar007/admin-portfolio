@@ -1,0 +1,250 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/responsive.scss" as *;
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+
+  h1 {
+    margin: 0.4rem 0 0.6rem;
+    font-size: 2.8rem;
+    line-height: 1.2;
+  }
+}
+
+.pageEyebrow {
+  margin: 0;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $muted;
+}
+
+.pageDescription {
+  margin: 0;
+  font-size: 1.4rem;
+  color: $muted;
+  max-width: 60rem;
+  line-height: 1.7;
+}
+
+.card {
+  background: $card;
+  border-radius: 1.8rem;
+  padding: 2.4rem;
+  box-shadow: 0 1rem 3rem rgba(17, 24, 39, 0.06);
+  border: 0.1rem solid rgba(217, 224, 231, 0.7);
+  max-width: 92rem;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.4rem;
+  padding: 0 1.6rem;
+  border-radius: 1.2rem;
+  border: 0.1rem solid $border;
+  font-weight: 700;
+  font-size: 1.4rem;
+  background: #eef3f8;
+  color: #314755;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #314755;
+}
+
+.input,
+.textarea,
+.select {
+  min-height: 4.8rem;
+  border: 0.1rem solid $border;
+  border-radius: 1.2rem;
+  padding: 1.2rem 1.4rem;
+  font-size: 1.5rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+  &:focus {
+    border-color: #314755;
+    box-shadow: 0 0 0 0.35rem rgba(49, 71, 85, 0.08);
+  }
+}
+
+.textarea {
+  min-height: 14rem;
+  resize: vertical;
+}
+
+.inputError {
+  border-color: #d92d20 !important;
+  background: #fff5f5;
+
+  &:focus {
+    border-color: #d92d20 !important;
+    box-shadow: 0 0 0 0.35rem rgba(217, 45, 32, 0.08) !important;
+  }
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 4.8rem;
+}
+
+.checkbox {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.errorText {
+  margin: 0;
+  color: #d92d20;
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+.helperText {
+  margin: 0;
+  color: $muted;
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.4rem;
+  padding: 0 1.8rem;
+  border-radius: 1.2rem;
+  border: none;
+  font-weight: 700;
+  font-size: 1.4rem;
+  background: #314755;
+  color: white;
+  box-shadow: 0 0.8rem 2rem rgba(49, 71, 85, 0.18);
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.4rem;
+  padding: 0 1.6rem;
+  border-radius: 1.2rem;
+  border: 0.1rem solid $border;
+  font-weight: 700;
+  font-size: 1.4rem;
+  background: #eef3f8;
+  color: #314755;
+}
+
+.btnLoadingWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.btnSpinner {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  border: 0.2rem solid rgba(255, 255, 255, 0.35);
+  border-top-color: white;
+  animation: btnSpin 0.7s linear infinite;
+}
+
+@keyframes btnSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.formSkeletonWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.formSkeleton {
+  display: block;
+  border-radius: 0.8rem;
+  background: linear-gradient(90deg, #c8d3dc 15%, #e3eaf0 45%, #c8d3dc 85%);
+  background-size: 220% 100%;
+  animation: formSkeletonLoading 1s linear infinite;
+}
+
+@keyframes formSkeletonLoading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.w18 {
+  width: 18rem;
+}
+
+.w28 {
+  width: 28rem;
+}
+
+.wFull {
+  width: 100%;
+}
+
+.h4 {
+  height: 1.6rem;
+}
+
+.h5 {
+  height: 4rem;
+}
+
+.h6 {
+  height: 4.8rem;
+}
