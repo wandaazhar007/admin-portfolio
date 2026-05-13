@@ -1,3 +1,4 @@
+//src/types/work.ts
 export type WorkImage = {
   fileName: string;
   path: string;
